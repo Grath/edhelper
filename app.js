@@ -265,9 +265,19 @@ lifeButtons.forEach(function (element, i) {
     let oldLife = players[i].life;
     touchendY = e.changedTouches[0].screenY;
     if (touchendY < (touchstartY * 0.8)) {
-      players[i].life += 1;
+      if (!players[i].rotated) {
+        players[i].life += 1;
+      }
+      else {
+        players[i].life -= 1;
+      }
     } else if (touchendY > (touchstartY * 1.2)) {
-      players[i].life -= 1;
+      if (!players[i].rotated) {
+        players[i].life -= 1;
+      }
+      else {
+        players[i].life += 1;
+      }
     }
     if (players[i].life != oldLife) {
       players[i].lifeHistory.push(parseInt(players[i].life));
